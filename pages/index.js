@@ -1,5 +1,6 @@
 import Head from "next/head";
 import DarkModeBtn from "./components/darkModeBtn";
+import Booklist from "./components/booklist";
 import { TOKEN, DATABASE_ID } from "@/config";
 
 export default function Home({ books }) {
@@ -73,9 +74,9 @@ export default function Home({ books }) {
         <hr className="my-8 border-gray-200 dark:border-gray-700" />
         <div className="booklist">
           {/* <div className="text-base my-10">TAP (탭 들어간다고쳐^^) </div> */}
-          {/* {books.results.map((abook) => (
+          {books.results.map((abook) => (
             <Booklist key={abook.id} data={abook} />
-          ))} */}
+          ))}
         </div>
       </div>
       <section className="footer">
