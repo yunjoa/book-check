@@ -6,7 +6,7 @@ const ModalTest = ({ isOpen, onClose, value }) => {
 
   const date = new Date(value.properties.doneDate.date.start);
   const imgSrc = value.properties.책표지.files[0].external.url;
-  console.log({ value });
+
   return (
     <>
       <div
