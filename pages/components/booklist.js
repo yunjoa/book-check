@@ -1,6 +1,5 @@
 // booklikst.js
 import { useState } from "react";
-import Modal from "./modal";
 import ModalTest from "./modalTest";
 
 export default function Booklist({ value }) {
