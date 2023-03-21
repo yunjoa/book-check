@@ -1,7 +1,26 @@
 import Head from "next/head";
 import DarkModeBtn from "./components/darkModeBtn";
+import { TOKEN, DATABASE_ID } from "@/config";
 
-export default function Home() {
+export default function Home({ books }) {
+  let thisMonth = new Date().getMonth() + 1;
+  let thisYear = new Date().getFullYear();
+  let MonthlyReading = 0;
+  let YearlyReading = 0;
+  books.results.map((abookday, key) => {
+    const doneDays = new Date(abookday.properties.doneDate.date.start);
+    const doneDaysMonth = doneDays.getMonth() + 1;
+    if (thisMonth === doneDaysMonth) {
+      MonthlyReading += 1;
+    }
+  });
+  books.results.map((abookday, key) => {
+    const doneDays = new Date(abookday.properties.doneDate.date.start);
+    const doneDaysYear = doneDays.getFullYear();
+    if (thisYear === doneDaysYear) {
+      YearlyReading += 1;
+    }
+  });
   return (
     <div className="home-wrap h-screen ">
       <Head>
@@ -25,7 +44,7 @@ export default function Home() {
                   한 달 동안 읽은 책
                 </p>
                 <span className="text-4xl font-bold  text-white dark:text-black">
-                  {/* {MonthlyReading} */}
+                  {MonthlyReading}
                 </span>
                 권
               </div>
@@ -41,7 +60,7 @@ export default function Home() {
                   한 해 동안 읽은 책
                 </p>
                 <span className="text-4xl font-bold  text-white dark:text-black">
-                  {/* {YearlyReading} */}
+                  {YearlyReading}
                 </span>
                 권
               </div>
@@ -89,4 +108,43 @@ export default function Home() {
       </section>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  //notion API에서
+  const options = {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "Notion-Version": "2022-06-28",
+      "content-type": "application/json",
+      Authorization: `Bearer ${TOKEN}`,
+    },
+    body: JSON.stringify({
+      sorts: [
+        {
+          property: "doneDate",
+          direction: "descending",
+        },
+      ],
+      filter: {
+        property: "Done",
+        status: {
+          equals: "다 읽었어 🎉",
+        },
+      },
+      page_size: 100,
+    }),
+  };
+
+  const res = await fetch(
+    `https://api.notion.com/v1/databases/${DATABASE_ID}/query`,
+    options
+  );
+
+  const books = await res.json();
+
+  return {
+    props: { books },
+  };
 }
