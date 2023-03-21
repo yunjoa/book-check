@@ -22,7 +22,7 @@ export default function Booklist({ value }) {
         onClick={clickBook}
         className="flex max-md:flex-col flex-row w-full p-10 border border-4 border-black items-center max-md:items-center group  mb-4 dark:border-white"
       >
-        <p className=" w-4/5 text-ellipsis break-keep text-xl pr-10 max-md:pr-0 group-hover:underline dark:group-hover:decoration-orange-400 underline-offset-4 decoration-emerald-400  ">
+        <p className=" w-full md:w-4/5 text-ellipsis break-keep text-xl pr-10 max-md:pr-0 group-hover:underline dark:group-hover:decoration-orange-400 underline-offset-4 decoration-emerald-400 ">
           {value && value.properties.Name.title[0].plain_text
             ? value.properties.Name.title[0].plain_text
             : ""}
