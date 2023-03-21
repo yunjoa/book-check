@@ -19,18 +19,12 @@ export default function Booklist({ value }) {
           {value && value.properties.Name.title[0].plain_text
             ? value.properties.Name.title[0].plain_text
             : ""}
-          {/* {value &&
-          value.properties &&
-          value.properties.Name &&
-          value.properties.Name.title &&
-          value.properties.Name.title.length > 0
-            ? value.properties.Name.title[0].plain_text
-            : ""} */}
         </p>
         <div className="max-md:mt-10 max-md:w-full  w-1/5 mt-0 text-left line-2 ">
           <p className="text-sm leading-loose truncate ;">
-            {/* {value&&value.properties.Author.id} */}
-            작가
+            {value && value.properties.Author.id
+              ? value.properties.Author.id
+              : ""}
           </p>
           <p className="text-sm leading-loose truncate ;">출판사</p>
         </div>
