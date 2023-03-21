@@ -75,7 +75,7 @@ export default function Home({ books }) {
         <div className="booklist">
           {/* <div className="text-base my-10">TAP (탭 들어간다고쳐^^) </div> */}
           {books.results.map((abook) => (
-            <Booklist key={abook.id} data={abook} />
+            <Booklist data={abook} />
           ))}
         </div>
       </div>

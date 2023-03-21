@@ -1,7 +1,7 @@
 import { useState } from "react";
 // import Modal from "./modal";
 
-export default function Booklist({ key, data }) {
+export default function Booklist({ data }) {
   const [modalOn, setModalOn] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const clickBook = () => {
