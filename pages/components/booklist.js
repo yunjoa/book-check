@@ -1,14 +1,22 @@
+// booklikst.js
 import { useState } from "react";
-// import Modal from "./modal";
+import Modal from "./modal";
+import ModalTest from "./modalTest";
 
 export default function Booklist({ value }) {
-  const [modalOn, setModalOn] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const clickBook = () => {
-    setModalOn(true);
-    setIsOpen(true);
+    setIsModalOpen(true);
   };
-  // console.log(value.properties.Name.title[0].plain_text);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div
@@ -22,22 +30,19 @@ export default function Booklist({ value }) {
         </p>
         <div className="max-md:mt-10 max-md:w-full  w-1/5 mt-0 text-left line-2 ">
           <p className="text-sm leading-loose truncate ;">
-            {value && value.properties.Author.id
+            {/* {value && value.properties.Author.id
               ? value.properties.Author.id
-              : ""}
+              : ""} */}
+            작가
           </p>
           <p className="text-sm leading-loose truncate ;">출판사</p>
         </div>
       </div>
-      <>
-        <div
-          onClick={() => {
-            setIsOpen(true);
-            setModalOn(modalOn == true);
-          }}
-        ></div>
-        {/* <Modal abook={value} open={isOpen} /> */}
-      </>
+      <ModalTest
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        value={value}
+      ></ModalTest>
     </>
   );
 }

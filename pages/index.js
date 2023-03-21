@@ -22,6 +22,7 @@ export default function Home({ books }) {
       YearlyReading += 1;
     }
   });
+
   return (
     <div className="home-wrap h-screen ">
       <Head>
@@ -144,6 +145,37 @@ export async function getServerSideProps() {
   );
 
   const books = await res.json();
+
+  // const relationIds = books.results
+  //   .map((book) => book.properties.Relations.relation)
+  //   .flat()
+  //   .map((relation) => relation.id);
+
+  // const relationResponse = await Promise.all(
+  //   relationIds.map((relationId) =>
+  //     fetch(`https://api.notion.com/v1/blocks/${relationId}`, {
+  //       headers: {
+  //         "Notion-Version": "2022-06-28",
+  //         "content-type": "application/json",
+  //         Authorization: `Bearer ${process.env.NOTION_API_KEY}`,
+  //       },
+  //     }).then((res) => res.json())
+  //   )
+  // );
+
+  // const syncedPropertyNames = relationResponse.map(
+  //   (relation) => relation.properties.SyncedPropertyName.title[0].plain_text
+  // );
+
+  // books.results.forEach((book) => {
+  //   book.syncedPropertyName = syncedPropertyNames.find((syncedPropertyName) =>
+  //     book.properties.Relations.relation.find(
+  //       (relation) =>
+  //         relation.properties.SyncedPropertyName.title[0].plain_text ===
+  //         syncedPropertyName
+  //     )
+  //   );
+  // });
 
   return {
     props: { books },
