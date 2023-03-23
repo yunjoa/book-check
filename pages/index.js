@@ -33,14 +33,14 @@ export default function Home({ books }) {
       </Head>
 
       <div className="p-10">
-        <h1 className="text-6xl font-bold">i Read it.</h1>
-        <h2 className="text-xs font-bold py-4 break-keep">
+        <h1 className="text-6xl font-bold dark:text-white">i Read it.</h1>
+        <h2 className="text-xs font-bold py-4 break-keep dark:text-white">
           노션에서 제 개인적인 독서 DB에 글을 작성하면 노션 API를 이용해서 이
           북책(Book Check) 웹페이지에 자동으로 업로드됩니다.
         </h2>
         <div className="flex">
           <div className="w-fit my-6 relative mr-6">
-            <div className="flex m-auto p-4 rounded-lg bg-black dark:bg-white">
+            <div className="flex m-auto p-4 rounded-lg bg-black dark:bg-white ">
               <div className="my-auto text-center text-white dark:text-black">
                 <p className="text-sm  text-white dark:text-black">
                   한 달 동안 읽은 책
